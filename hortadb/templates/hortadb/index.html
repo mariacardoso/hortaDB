@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'hortadb/style.css' %}">
+
+{% if species_list %}
+    <ul>
+    {% for species in species_list %}
+        <li><a href="{% url 'hortadb:detail' species.id %}">{{ species.common_name }}</a></li>
+    {% endfor %}    
+    </ul>
+{% else %}
+    <p>No species are available.</p>
+{% endif %}

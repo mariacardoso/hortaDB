@@ -1,0 +1,12 @@
+<h1>{{ species.common_name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'hortadb:vote' species.id %}" method="post">
+{% csrf_token %}
+{% for cultivar in species.cultivar_set.all %}
+    <input type="radio" name="cultivar" id="cultivar{{ forloop.counter }}" value="{{ cultivar.id }}">
+    <label for="cultivar{{ forloop.counter }}">{{ cultivar.variety }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>
