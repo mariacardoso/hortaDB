@@ -29,19 +29,10 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Species
     template_name = 'hortadb/results.html'
-    
 
-def vote(request, species_id):
-    species = get_object_or_404(Species, pk=species_id)
-    try:
-        selected_cultivar = species.cultivar_set.get(pk=request.POST['cultivar'])
-    except (KeyError, Cultivar.DoesNotExist):
-        # Redisplay the cultivar voting form.
-        return render(request, 'hortadb/detail.html', {
-            'species': species,
-            'error_message': "You didn't select a variety.",
-        })
-    else:
-        selected_cultivar.votes += 1
-        selected_cultivar.save()
-        return HttpResponseRedirect(reverse('hortadb:results', args=(species.id,)))
+# tiago
+
+def tiago(request):
+    return render(request, 'tiago.html', {
+        'species': Species.objects.all()
+    })
