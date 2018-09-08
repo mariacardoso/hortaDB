@@ -32,9 +32,9 @@
         <tr>
         {% for i in months %}
             {% if i >= seed.date_sowo_ini and i <= seed.date_sowo_end %}
-            <td class="sow-outside"></td>
+                <td><div class="seed-table-circle sow-outside"></div></td>
             {% else %}
-            <td></td>
+                <td></td>
             {% endif%}
         {% endfor %}
         </tr>
@@ -45,9 +45,9 @@
         <tr>
         {% for i in months %}
             {% if i >= seed.date_tran_ini and i <= seed.date_tran_end %}
-            <td class="transplant"></td>
+                <td><div class="seed-table-circle transplant"></div></td>
             {% else %}
-            <td></td>
+                <td></td>
             {% endif%}
         {% endfor %}
         </tr>
@@ -58,9 +58,9 @@
         <tr>
         {% for i in months %}
             {% if i >= seed.date_harv_ini and i <= seed.date_harv_end %}
-            <td><div class="harvest"></div></td>
+                <td><div class="seed-table-circle harvest"></div></td>
             {% else %}
-            <td></td>
+                <td></td>
             {% endif%}
         {% endfor %}
         </tr>

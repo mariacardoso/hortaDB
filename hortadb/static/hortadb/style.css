@@ -96,29 +96,6 @@ body {
    * Tables
    */
 
-  td {background: white;}
-
-  td.sow-inside {
-    background: #eae48a;
-  }
-
-  td.sow-outside {
-    background: #8bf6f9;
-  }
-
-  td.transplant {
-    background: #9befad;
-  }
-
-  .harvest {
-    padding: 7px;
-    background: #ef6a4c;
-    width: 2px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 100%;
-  }
-
   .seed-table-circle {
     padding: 7px;
     width: 2px;
@@ -127,6 +104,18 @@ body {
     border-radius: 100%;
   }
 
-  .seed-table-circle sow-inside {
+  .seed-table-circle.sow-inside {
     background: #eae48a;
+  }
+
+  .seed-table-circle.sow-outside {
+    background: #8bf6f9;
+  }
+
+  .seed-table-circle.transplant {
+    background: #9befad;
+  }
+
+  .seed-table-circle.harvest {
+    background: #ef6a4c;
   }

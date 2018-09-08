@@ -37,6 +37,13 @@ class SpeciesView(generic.ListView):
         return Species.objects.order_by('family')
 
 
+def cultivar(request, cid):
+    return render(request, 'hortadb/cultivar.html', {
+        'cultivar': Cultivar.objects.get(pk=cid),
+        'months':   list(range(1,13)),
+    })
+
+
 # tiago
 
 def tiago(request):
@@ -48,5 +55,5 @@ def detail(request, sid):
     
     return render(request, 'hortadb/detail.html', {
         'species': Species.objects.get(pk=sid),
-        'months': list(range(1,13)),
+        'months':  list(range(1,13)),
     })
