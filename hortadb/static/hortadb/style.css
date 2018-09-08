@@ -1,18 +1,18 @@
 body {
     font-size: .875rem;
-  }
+}
 
-  .feather {
+.feather {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
-  }
+}
 
-  /*
-   * Sidebar
-   */
+/*
+* Sidebar
+*/
 
-  .sidebar {
+.sidebar {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -20,9 +20,9 @@ body {
     z-index: 100; /* Behind the navbar */
     padding: 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-  }
+}
 
-  .sidebar-sticky {
+.sidebar-sticky {
     position: -webkit-sticky;
     position: sticky;
     top: 48px; /* Height of navbar */
@@ -30,92 +30,106 @@ body {
     padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  }
+}
 
-  .sidebar .nav-link {
+.sidebar .nav-link {
     font-weight: 500;
     color: #333;
-  }
+}
 
-  .sidebar .nav-link .feather {
+.sidebar .nav-link .feather {
     margin-right: 4px;
     color: #999;
-  }
+}
 
-  .sidebar .nav-link.active {
+.sidebar .nav-link.active {
     color: #007bff;
-  }
+}
 
-  .sidebar .nav-link:hover .feather,
-  .sidebar .nav-link.active .feather {
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
     color: inherit;
-  }
+}
 
-  .sidebar-heading {
+.sidebar-heading {
     font-size: .75rem;
     text-transform: uppercase;
-  }
+}
 
-  /*
-   * Navbar
-   */
+/*
+* Navbar
+*/
 
-  .navbar-brand {
+.navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
     font-size: 1rem;
     background-color: rgba(0, 0, 0, .25);
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-  }
+}
 
-  .navbar .form-control {
+.navbar .form-control {
     padding: .75rem 1rem;
     border-width: 0;
     border-radius: 0;
-  }
+}
 
-  .form-control-dark {
+.form-control-dark {
     color: #fff;
     background-color: rgba(255, 255, 255, .1);
     border-color: rgba(255, 255, 255, .1);
-  }
+}
 
-  .form-control-dark:focus {
+.form-control-dark:focus {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-  }
 
-  /*
-   * Utilities
-   */
+}
 
-  .border-top { border-top: 1px solid #e5e5e5; }
-  .border-bottom { border-bottom: 1px solid #e5e5e5; }
+/*
+* Utilities
+*/
 
-  /*
-   * Tables
-   */
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
 
-  .seed-table-circle {
-    padding: 7px;
-    width: 2px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 100%;
-  }
+/*
+* Tables
+*/
 
-  .seed-table-circle.sow-inside {
-    background: #eae48a;
-  }
+.seed-calendar {
+    width: auto;
+}
 
-  .seed-table-circle.sow-outside {
-    background: #8bf6f9;
-  }
+.seed-calendar td {
+    padding: 0;
+    vertical-align: middle;
 
-  .seed-table-circle.transplant {
-    background: #9befad;
-  }
+    height: 40px;
+    width: 40px;
+    line-height: 4px;
+}
 
-  .seed-table-circle.harvest {
-    background: #ef6a4c;
-  }
+.seed-calendar .check {
+    height: 15px;
+    width: 15px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.seed-calendar-sowi .check {
+    background-color: #eae48a;
+}
+
+.seed-calendar-sowo .check {
+    background-color: #8bf6f9;
+}
+
+.seed-calendar-tran .check {
+    background-color: #9befad;
+}
+
+.seed-calendar-harv .check {
+    background-color: #ef6a4c;
+}

@@ -5,7 +5,7 @@
     }
 </style>
 
-<table>
+<table class="seed-calendar">
     <thead>
         <tr>
         {% for i in months %}
@@ -14,56 +14,62 @@
         </tr>
     </thead>
 
-    {# toggle SOW INSIDE row #}
-    {% if seed.date_sowi_ini != null and seed.date_sowi_end %}
-        <tr>
-        {% for i in months %}
-            {% if i >= seed.date_sowi_ini and i <= seed.date_sowi_end %}
-                <td><div class="seed-table-circle sow-inside"></div></td>
-            {% else %}
-                <td></td>
-            {% endif%}
-        {% endfor %}
-        </tr>
-    {% endif %}
+    <tbody>
+        {% include "hortadb/calendar-line.html" with class="seed-calendar-sowi" start_date=seed.date_sowi_ini end_date=seed.date_sowi_end %}
+        {% include "hortadb/calendar-line.html" with class="seed-calendar-sowo" start_date=seed.date_sowo_ini end_date=seed.date_sowo_end %}
+        {% include "hortadb/calendar-line.html" with class="seed-calendar-tran" start_date=seed.date_tran_ini end_date=seed.date_tran_end %}
+        {% include "hortadb/calendar-line.html" with class="seed-calendar-harv" start_date=seed.date_harv_ini end_date=seed.date_harv_end %}
 
-    {# toggle SOW OUTSIDE row #}
-    {% if seed.date_sowo_ini != null and seed.date_sowo_end %}
-        <tr>
-        {% for i in months %}
-            {% if i >= seed.date_sowo_ini and i <= seed.date_sowo_end %}
-                <td><div class="seed-table-circle sow-outside"></div></td>
-            {% else %}
-                <td></td>
-            {% endif%}
-        {% endfor %}
-        </tr>
-    {% endif %}
+        <!--{# toggle SOW INSIDE row #}
+        {% if seed.date_sowi_ini != null and seed.date_sowi_end %}
+            <tr class="seed-calendar-sowi">
+            {% for i in months %}
+                <td
+                {% if i >= seed.date_sowi_ini and i <= seed.date_sowi_end %}
+                class="check"
+                {% endif%}>
+                </td>
+            {% endfor %}
+            </tr>
+        {% endif %}
 
-    {# toggle TRANSPLANT row #}
-    {% if seed.date_tran_ini != null and seed.date_tran_end %}
-        <tr>
-        {% for i in months %}
-            {% if i >= seed.date_tran_ini and i <= seed.date_tran_end %}
-                <td><div class="seed-table-circle transplant"></div></td>
-            {% else %}
+        {# toggle SOW OUTSIDE row #}
+        {% if seed.date_sowo_ini != null and seed.date_sowo_end %}
+            <tr class="seed-calendar-sowo">
+            {% for i in months %}
+                {% if i >= seed.date_sowo_ini and i <= seed.date_sowo_end %}
+                <td class="sow-outside"></td>
+                {% else %}
                 <td></td>
-            {% endif%}
-        {% endfor %}
-        </tr>
-    {% endif %}
+                {% endif%}
+            {% endfor %}
+            </tr>
+        {% endif %}
 
-    {# toggle HARVEST row #}
-    {% if seed.date_harv_ini != null and seed.date_harv_end %}
-        <tr>
-        {% for i in months %}
-            {% if i >= seed.date_harv_ini and i <= seed.date_harv_end %}
-                <td><div class="seed-table-circle harvest"></div></td>
-            {% else %}
+        {# toggle TRANSPLANT row #}
+        {% if seed.date_tran_ini != null and seed.date_tran_end %}
+            <tr class="seed-calendar-transplant">
+            {% for i in months %}
+                {% if i >= seed.date_tran_ini and i <= seed.date_tran_end %}
+                <td class="transplant"></td>
+                {% else %}
                 <td></td>
-            {% endif%}
-        {% endfor %}
-        </tr>
-    {% endif %}
+                {% endif%}
+            {% endfor %}
+            </tr>
+        {% endif %}
 
-</table>   
+        {# toggle HARVEST row #}
+        {% if seed.date_harv_ini != null and seed.date_harv_end %}
+            <tr class="seed-calendar-harvest">
+            {% for i in months %}
+                {% if i >= seed.date_harv_ini and i <= seed.date_harv_end %}
+                <td><div class="harvest"></div></td>
+                {% else %}
+                <td></td>
+                {% endif%}
+            {% endfor %}
+            </tr>
+        {% endif %}-->
+    </tbody>
+</table>

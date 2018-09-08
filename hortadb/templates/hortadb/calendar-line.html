@@ -1,0 +1,11 @@
+{% if start_date != null and end_date %}
+    <tr class="{{ class }}">
+    {% for i in months %}
+        <td>
+            {% if i >= start_date and i <= end_date %}
+            <span class="check"></span>
+            {% endif %}
+        </td>
+    {% endfor %}
+    </tr>
+{% endif %}
