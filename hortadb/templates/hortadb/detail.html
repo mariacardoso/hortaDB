@@ -1,8 +1,8 @@
-{% extends 'hortadb/base.html' %} {% load static %} 
+{% extends 'hortadb/base.html' %} {% load static %}
 
 {% block title %}
     Species: {{ species.common_name }}
-{% endblock %} 
+{% endblock %}
 
 {% block content %}
 <h1>{{ species.common_name }} </h1>
@@ -39,7 +39,7 @@
         <tr>
             <td><a href="{% url 'hortadb:cultivar' c.id %}">{{ c.variety }}</a></td>
             <td>{{ c.get_life_cycle_display }}</td>
-            <td>
+            <td style="width: 1%">
             {% with seed=c.seed_set.first %}
                 {% include "hortadb/calendar.html" with seed=seed%}
             {% endwith %}
@@ -53,4 +53,4 @@
         <p>No species are available.</p>
     {% endif %}
 </div>
-{% endblock %} 
+{% endblock %}
