@@ -1,0 +1,27 @@
+{% extends 'hortadb/base.html' %}
+
+{% block content %}
+    {% if species_list %}
+        <table class="table">
+            <tr>
+                <th>Common name</th>
+                <th>Species</th>
+                <th>Genus</th>
+                <th>Family</th>
+                <th>Order</th>
+            </tr>
+
+            {% for s in species_list %}
+            <tr>
+                <td><a href="{% url 'hortadb:detail' s.id %}">{{ s.common_name }}</a></td>
+                <td>{{ s.species }}</td>
+                <td>{{ s.genus }}</td>
+                <td>{{ s.family }}</td>
+                <td>{{ s.order }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No species are available.</p>
+    {% endif %}
+{% endblock %}

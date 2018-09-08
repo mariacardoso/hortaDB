@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .models import Cultivar, Species
+from .models import Species, Cultivar, Seed, Seed_Packet
 
 
 class IndexView(generic.ListView):
@@ -12,27 +12,41 @@ class IndexView(generic.ListView):
     context_object_name = 'species_list'
 
     def get_queryset(self):
-        return Species.objects.order_by('family')[:5]
+        return Species.objects.order_by('family')
 
 
 class DetailView(generic.DetailView):
-    model = Species
+    model = Species, Cultivar, Seed
     template_name = 'hortadb/detail.html'
 
     def get_queryset(self):
         """
         Excludes any species that aren't published yet.
         """
-        return Species.objects.filter(pub_date__lte=timezone.now())
+        return Species.objects.all()
+    
+    def get_range(self):
+        return range(1,12)
 
 
-class ResultsView(generic.DetailView):
-    model = Species
-    template_name = 'hortadb/results.html'
+class SpeciesView(generic.ListView):
+    template_name = 'hortadb/species.html'
+    context_object_name = 'species_list'
+
+    def get_queryset(self):
+        return Species.objects.order_by('family')
+
 
 # tiago
 
 def tiago(request):
     return render(request, 'tiago.html', {
         'species': Species.objects.all()
+    })
+
+def detail(request, sid):
+    
+    return render(request, 'hortadb/detail.html', {
+        'species': Species.objects.get(pk=sid),
+        'months': list(range(1,13)),
     })

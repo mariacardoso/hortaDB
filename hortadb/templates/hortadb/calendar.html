@@ -1,0 +1,69 @@
+<style>
+    .table {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+        {% for i in months %}
+            <th>{{ i }}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+
+    {# toggle SOW INSIDE row #}
+    {% if seed.date_sowi_ini != null and seed.date_sowi_end %}
+        <tr>
+        {% for i in months %}
+            {% if i >= seed.date_sowi_ini and i <= seed.date_sowi_end %}
+                <td><div class="seed-table-circle sow-inside"></div></td>
+            {% else %}
+                <td></td>
+            {% endif%}
+        {% endfor %}
+        </tr>
+    {% endif %}
+
+    {# toggle SOW OUTSIDE row #}
+    {% if seed.date_sowo_ini != null and seed.date_sowo_end %}
+        <tr>
+        {% for i in months %}
+            {% if i >= seed.date_sowo_ini and i <= seed.date_sowo_end %}
+            <td class="sow-outside"></td>
+            {% else %}
+            <td></td>
+            {% endif%}
+        {% endfor %}
+        </tr>
+    {% endif %}
+
+    {# toggle TRANSPLANT row #}
+    {% if seed.date_tran_ini != null and seed.date_tran_end %}
+        <tr>
+        {% for i in months %}
+            {% if i >= seed.date_tran_ini and i <= seed.date_tran_end %}
+            <td class="transplant"></td>
+            {% else %}
+            <td></td>
+            {% endif%}
+        {% endfor %}
+        </tr>
+    {% endif %}
+
+    {# toggle HARVEST row #}
+    {% if seed.date_harv_ini != null and seed.date_harv_end %}
+        <tr>
+        {% for i in months %}
+            {% if i >= seed.date_harv_ini and i <= seed.date_harv_end %}
+            <td><div class="harvest"></div></td>
+            {% else %}
+            <td></td>
+            {% endif%}
+        {% endfor %}
+        </tr>
+    {% endif %}
+
+</table>   

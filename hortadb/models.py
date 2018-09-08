@@ -42,7 +42,6 @@ class Cultivar(models.Model):
                         default    = 'UN',
                         blank      = False,
     )
-    # votes   = models.IntegerField(default=0)
 
     def __str__(self):
         return '%s %s' % (self.species, self.variety)
@@ -100,8 +99,8 @@ class Seed(models.Model):
                         blank=True, null= True,
                         validators=[MinValueValidator(1), MaxValueValidator(12)])
     # TO ADD
-    # days_harvest    = models.IntegerField('time until harvest')
-    # days_to_maturity
+    # days_to_maturity    = models.IntegerField('days to maturity', blank=True, null=True)
+
 
     def __str__(self):
         return '%s %s' % (self.plant_seed, self.brand)
@@ -112,6 +111,8 @@ class Seed_Packet(models.Model):
     date_packing  = models.DateField('packing date of seed bag', blank=True, null=True)
     date_validity = models.DateField('expiry date of seed bag', blank=True, null=True)
     weight        = models.IntegerField('weight of seed bag [g]', blank=True, null=True)
+    #organic      = models.BooleanField('are the seeds organic?')
+    #price        = models.FloatField('price per bag', blank=True, null=True)
 
     def __str__(self):
         return '%s' % (self.seed_packet)

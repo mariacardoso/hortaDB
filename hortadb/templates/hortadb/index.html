@@ -1,6 +1,4 @@
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'hortadb/style.css' %}">
+{% extends 'hortadb/base.html' %} {% load static %}
 
 {% if species_list %}
     <ul>

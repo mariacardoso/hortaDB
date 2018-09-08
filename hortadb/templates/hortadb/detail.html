@@ -1,12 +1,61 @@
-<h1>{{ species.common_name }}</h1>
+{% extends 'hortadb/base.html' %} {% load static %} 
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block title %}
+    Species: {{ species.common_name }}
+{% endblock %} 
 
-<form action="{% url 'hortadb:vote' species.id %}" method="post">
-{% csrf_token %}
-{% for cultivar in species.cultivar_set.all %}
-    <input type="radio" name="cultivar" id="cultivar{{ forloop.counter }}" value="{{ cultivar.id }}">
-    <label for="cultivar{{ forloop.counter }}">{{ cultivar.variety }}</label><br>
-{% endfor %}
-<input type="submit" value="Vote">
-</form>
+{%block content %}
+<h1>{{ species.common_name }} </h1>
+<hr>
+
+<div class="row">
+    <div class="col-9">
+        <p>Texto</p>
+    </div>
+
+    <div class="col-3">
+        <div class="card text-center mb-3">
+            <h5 class="card-header"><i><strong>{{ species.species }}</i></strong></h5>
+            <div class="card-body">
+                <h5 class="card-title">{{ species.common_name }}</h5>
+                <p class="card-text">Genus: {{ species.genus }} </p>
+                <p class="card-text">Family: {{ species.family }}</p>
+                <p class="card-text">Order: {{ species.order }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% if species.cultivar_set %}
+    <table class="table table-bordered">
+        <tr>
+            <th>Common name</th>
+            <th>Life cycle</th>
+            <th>Origin</th>
+            <th>Calendar</th>
+            <th>Origin</th>
+        </tr>
+        {% for c in species.cultivar_set.all %}
+        <tr>
+            <td>{{ c.variety }}</td>
+            <td>{{ c.life_cycle }}</td>
+            {% with seed=c.seed_set.first %}
+                <td>{{ seed.brand }}</td> 
+            {% endwith %}
+
+            <td>
+            {% with seed=c.seed_set.first %}
+                {% include "hortadb/calendar.html" with seed=seed%}
+            {% endwith %}
+            </td>
+
+            <td> lalalla</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No species are available.</p>
+    {% endif %}
+</div>
+{% endblock %} 
