@@ -10,7 +10,7 @@ def context(request):
 
             {
                 'title': 'Collections',
-                'url': '/collections',
+                'url': '/hortadb/species',
                 'icon': 'warehouse'
             }
         ]

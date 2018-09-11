@@ -11,17 +11,8 @@ class Species(models.Model):
     family      = models.CharField(max_length=100)
     order       = models.CharField(max_length=100)
 
-    # pub_date    = models.DateTimeField('date added')
-
     def __str__(self):
         return self.common_name
-
-    #def was_created_recently(self):
-    #    now = timezone.now()
-    #    return now - datetime.timedelta(days=1) <= self.pub_date <= now
-    #was_created_recently.admin_order_field = 'pub_date'
-    #was_created_recently.boolean = True
-    #was_created_recently.short_description = 'Published recently?'
 
     class Meta:
         verbose_name_plural = "species"
@@ -98,8 +89,13 @@ class Seed(models.Model):
                         'month harvesting ends',
                         blank=True, null= True,
                         validators=[MinValueValidator(1), MaxValueValidator(12)])
-    # TO ADD
-    # days_to_maturity    = models.IntegerField('days to maturity', blank=True, null=True)
+    
+    days_to_maturity = models.IntegerField('days to maturity', blank=True, null=True)
+    fruit_size       = models.FloatField('average size of fruit [cm]', blank=True, null=True)
+    fruit_weight     = models.FloatField('average weight of fruit [cm]', blank=True, null=True)
+    plant_spacing    = models.FloatField('average space between plants [cm]', blank=True, null=True)
+    row_spacing      = models.FloatField('average space between rows [cm]', blank=True, null=True)
+    germination_temp = models.FloatField('average weight of fruit [cm]', blank=True, null=True)
 
 
     def __str__(self):

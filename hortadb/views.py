@@ -5,6 +5,12 @@ from django.views import generic
 from django.utils import timezone
 
 from .models import Species, Cultivar, Seed, Seed_Packet
+from .forms import SpeciesForm
+
+import locale
+# this reads the environment and inits the right locale
+locale.setlocale(locale.LC_ALL, "")
+
 
 
 class IndexView(generic.ListView):
@@ -24,9 +30,6 @@ class DetailView(generic.DetailView):
         Excludes any species that aren't published yet.
         """
         return Species.objects.all()
-    
-    def get_range(self):
-        return range(1,12)
 
 
 class SpeciesView(generic.ListView):
@@ -34,7 +37,13 @@ class SpeciesView(generic.ListView):
     context_object_name = 'species_list'
 
     def get_queryset(self):
-        return Species.objects.order_by('family')
+        return sorted(Species.objects.all(), key=lambda s: locale.strxfrm(s.common_name)) 
+
+
+def species_new(request):
+    form = SpeciesForm()
+    return render(request, 'hortadb/species_edit.html', {
+        'form': form})
 
 
 def cultivar(request, cid):
@@ -51,9 +60,10 @@ def tiago(request):
         'species': Species.objects.all()
     })
 
-def detail(request, sid):
-    
+
+def detail(request, sid):    
     return render(request, 'hortadb/detail.html', {
         'species': Species.objects.get(pk=sid),
         'months':  list(range(1,13)),
     })
+    

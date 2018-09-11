@@ -1,1 +1,44 @@
 {% extends 'hortadb/base.html' %} {% load static %}
+
+{% block title %}
+    Cultivar: {{ cultivar.species }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ cultivar.species }} {{ cultivar.variety }}</h1>
+
+<div class="row">
+    {% if cultivar.seed_set %}
+    <table class="table table-bordered">
+        
+        <thead>
+            <tr>
+                <th>Origin</th>
+                <th>Days to maturity</th> 
+                <th>Fruit size [cm]</th>
+                <th>Fruit weight [g]</th>
+                <th>Plant spacing [cm]</th>
+                <th>Row spacing [cm]</th>
+                <th>Calendar</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for seed in cultivar.seed_set.all %}
+            <tr>
+                <td>{{ seed.brand }}</td>
+                <td>{{ seed.days_to_maturity }}</td>
+                <td>{{ seed.fruit_size }}</td>
+                <td>{{ seed.fruit_weight }}</td>
+                <td>{{ seed.plant_spacing }}</td>
+                <td>{{ seed.row_spacing }}</td>
+                <td style="width: 1%">
+                    {% include "hortadb/calendar.html" with seed=seed %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %} No content {% endif %}
+</div>
+{% endblock %}

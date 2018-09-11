@@ -10,6 +10,7 @@ urlpatterns = [
     path('species/', views.SpeciesView.as_view(), name='species'),
     #path('species/<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('species/<int:sid>/', views.detail, name='detail'),
-
+    path('species/new/', views.species_new, name='species_new'),
     path('cultivar/<int:cid>/', views.cultivar, name='cultivar'),
+
 ]

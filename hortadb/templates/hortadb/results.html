@@ -1,9 +1,0 @@
-<h1>{{ species.common_name }}</h1>
-
-<ul>
-{% for cultivar in species.cultivar_set.all %}
-    <li>{{ cultivar.variety }} -- {{ cultivar.votes }} vote{{ cultivar.votes|pluralize }}</li>
-{% endfor %}
-</ul>
-
-<a href="{% url 'hortadb:detail' species.id %}">Vote again?</a>

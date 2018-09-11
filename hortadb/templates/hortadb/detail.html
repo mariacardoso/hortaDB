@@ -10,7 +10,9 @@
 
 <div class="row">
     <div class="col-9">
-        <p>Texto</p>
+        <p>{% lorem %}</p>
+        <p>{% lorem %}</p>
+        <p>{% lorem %}</p>
     </div>
 
     <div class="col-3">
@@ -33,7 +35,7 @@
             <th>Common name</th>
             <th>Life cycle</th>
             <th>Calendar</th>
-            <th>Origin</th>
+            <th>Review</th>
         </tr>
         {% for c in species.cultivar_set.all %}
         <tr>
@@ -44,8 +46,7 @@
                 {% include "hortadb/calendar.html" with seed=seed%}
             {% endwith %}
             </td>
-
-            <td> lalalla</td>
+            <td>Review</td>
         </tr>
         {% endfor %}
     </table>

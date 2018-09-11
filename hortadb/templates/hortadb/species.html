@@ -1,5 +1,9 @@
 {% extends 'hortadb/base.html' %}
 
+{% block button %}
+    <a class="btn btn-primary" href="{% url 'hortadb:species_new' %}" role="button">Add species</a>
+{% endblock %}
+
 {% block content %}
     {% if species_list %}
         <table class="table">

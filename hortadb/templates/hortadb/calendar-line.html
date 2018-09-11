@@ -1,3 +1,4 @@
+{% spaceless %}
 {% if start_date != null and end_date %}
     <tr class="{{ class }}">
     {% for i in months %}
@@ -9,3 +10,4 @@
     {% endfor %}
     </tr>
 {% endif %}
+{% endspaceless %}
