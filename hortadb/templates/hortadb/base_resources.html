@@ -1,0 +1,17 @@
+{% extends 'hortadb/base.html' %}
+
+{% block title %}Resources{% endblock title%}
+
+{% block content %}
+
+    {% if playlists %}
+    <h2>Listas de reprodução</h2>
+    <div class="row">
+        {% include "hortadb/resources_card.html" %}
+    </div>
+    {% else %}
+        <p>No playlists are available.</p>
+    {% endif %}
+
+
+{% endblock content %}

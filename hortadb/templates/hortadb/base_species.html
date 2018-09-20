@@ -1,31 +1,45 @@
 {% extends 'hortadb/base.html' %}
+{# % load render_table from django_tables2 % #}
 
 {% block button %}
     <a class="btn btn-primary" href="{% url 'hortadb:species_new' %}" role="button">Add species</a>
 {% endblock %}
 
+{% block title %}
+    Species
+{% endblock title %}
+
 {% block content %}
+    <!-- render_table table -->
+
     {% if species_list %}
         <table class="table">
             <tr>
                 <th>Common name</th>
-                <th>Species</th>
-                <th>Genus</th>
-                <th>Family</th>
+                <th>Binomial name</th>
                 <th>Order</th>
+                <th>Family</th>
+                <th>Genus</th>
+                <th>Number of varieties</th>
             </tr>
 
             {% for s in species_list %}
             <tr>
                 <td><a href="{% url 'hortadb:detail' s.id %}">{{ s.common_name }}</a></td>
-                <td>{{ s.species }}</td>
-                <td>{{ s.genus }}</td>
-                <td>{{ s.family }}</td>
+                <td>{{ s.binomial_name }}</td>
                 <td>{{ s.order }}</td>
+                <td>{{ s.family }}</td>
+                <td>{{ s.genus }}</td>
+                <td>{{ s.cultivar_set.all.count }}</td>
             </tr>
             {% endfor %}
         </table>
     {% else %}
         <p>No species are available.</p>
     {% endif %}
+
+</div>
+
+
 {% endblock %}
+

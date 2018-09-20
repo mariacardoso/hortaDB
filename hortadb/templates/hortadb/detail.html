@@ -43,7 +43,7 @@
             <td>{{ c.get_life_cycle_display }}</td>
             <td style="width: 1%">
             {% with seed=c.seed_set.first %}
-                {% include "hortadb/calendar.html" with seed=seed%}
+                {% include "hortadb/calendar.html" with seed=seed %}
             {% endwith %}
             </td>
             <td>Review</td>

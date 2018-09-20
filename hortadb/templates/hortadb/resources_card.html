@@ -1,0 +1,15 @@
+{% block content %}
+
+    {% if playlists %}
+        {% for p in playlists %}
+            {% include "hortadb/resources_box.html" with playlist=p %}
+        {% endfor %}
+        <div class="col">
+            <a class="btn btn-primary" href="hortadb/resources-playlist-all.html" role="button">Link</a>
+        </div>
+    {% else %}
+        No playlists.
+    {% endif %}
+
+
+{% endblock content %}

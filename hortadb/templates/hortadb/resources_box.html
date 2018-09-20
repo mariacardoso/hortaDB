@@ -1,0 +1,13 @@
+{% if playlist %}
+
+<div class="col">
+    <div class="video-container">
+        <iframe id="ytplayer" type="text/html" src="{{ playlist.playlist_link }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <h5>{{ playlist.short_description }}</h5>
+</div>
+
+{% endif %}
+
+
+

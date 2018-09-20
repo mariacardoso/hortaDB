@@ -7,12 +7,19 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Species(models.Model):
     common_name = models.CharField(max_length=100)
     species     = models.CharField(max_length=100)
+    subspecies  = models.CharField(max_length=50, blank=True)
     genus       = models.CharField(max_length=100)
     family      = models.CharField(max_length=100)
     order       = models.CharField(max_length=100)
 
     def __str__(self):
         return self.common_name
+
+    def binomial_name(self):
+        if not self.subspecies:
+            return '{} {}'.format(self.genus, self.species[3:])
+        else:
+            return '{} {} {}'.format(self.genus, self.species[3:], self.subspecies)
 
     class Meta:
         verbose_name_plural = "species"
@@ -52,7 +59,7 @@ class Cultivar(models.Model):
         return self.species.species
     get_species.short_description = ('plant species')
     get_species.admin_order_field = ('species__species')
-    
+
 
 class Seed(models.Model):
     plant_seed   = models.ForeignKey(Cultivar, on_delete=models.CASCADE)
@@ -72,7 +79,7 @@ class Seed(models.Model):
     date_sowi_end = models.IntegerField(
                         'month sowing inside ends',
                         blank=True, null= True,
-                        validators=[MinValueValidator(1), MaxValueValidator(12)])                                    
+                        validators=[MinValueValidator(1), MaxValueValidator(12)])
     date_tran_ini = models.IntegerField(
                         'month transplanting starts',
                         blank=True, null= True,
@@ -89,7 +96,7 @@ class Seed(models.Model):
                         'month harvesting ends',
                         blank=True, null= True,
                         validators=[MinValueValidator(1), MaxValueValidator(12)])
-    
+
     days_to_maturity = models.IntegerField('days to maturity', blank=True, null=True)
     fruit_size       = models.FloatField('average size of fruit [cm]', blank=True, null=True)
     fruit_weight     = models.FloatField('average weight of fruit [cm]', blank=True, null=True)
@@ -117,3 +124,13 @@ class Seed_Packet(models.Model):
         verbose_name = "seed packet"
         verbose_name_plural = "seed packets"
 
+
+class Playlist(models.Model):
+    channel_name      = models.CharField(max_length=50)
+    playlist_name     = models.CharField(max_length=100)
+    playlist_link     = models.URLField()
+    short_description = models.TextField(max_length=600, blank=True)
+    created_at        = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s %s' % (self.channel_name, self.playlist_name)

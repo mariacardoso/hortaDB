@@ -12,6 +12,12 @@ def context(request):
                 'title': 'Collections',
                 'url': '/hortadb/species',
                 'icon': 'warehouse'
+            },
+
+            {
+                'title': 'Resources',
+                'url': '/hortadb/resources',
+                'icon': 'book-open'
             }
         ]
     }

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django.utils.html import format_html
 
-from .models import Species, Cultivar, Seed, Seed_Packet
+from .models import Species, Cultivar, Seed, Seed_Packet, Playlist
 
 ## SEED PACKETS
 
@@ -32,7 +32,7 @@ class SeedInLine(admin.TabularInline):
             ]
         }),
     ]
-    
+
 
 class SeedAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -51,7 +51,7 @@ class SeedAdmin(admin.ModelAdmin):
     inlines = [SeedPacketInLine]
     list_display = ['plant_seed', 'brand', 'get_seed_name', 'get_seed_variety', 'brand', 'get_seed_species']
     list_display_links = ('get_seed_name', 'get_seed_variety')
-    
+
 
     def get_seed_species(self, obj):
         return obj.plant_seed.species.species
@@ -86,7 +86,7 @@ class CultivarAdmin(admin.ModelAdmin):
 class SpeciesAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
-            'fields': (('common_name', 'species'),)
+            'fields': ('common_name', ('species', 'subspecies'),)
         }),
         ('Taxonomy information', {
             'classes': ('collapse',),
@@ -104,8 +104,14 @@ class SpeciesAdmin(admin.ModelAdmin):
         """
         return obj.cultivar_set.count()
     count_varieties.short_description = ('Number of varieties')
-    
+
+
+## RESOURCES
+
+class PlaylistAdmin(admin.ModelAdmin):
+    fields = ('channel_name', 'playlist_name', 'playlist_link', 'short_description')
 
 admin.site.register(Cultivar, CultivarAdmin)
 admin.site.register(Species, SpeciesAdmin)
 admin.site.register(Seed, SeedAdmin)
+admin.site.register(Playlist, PlaylistAdmin)

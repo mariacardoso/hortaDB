@@ -3,14 +3,27 @@ from . import views
 
 app_name = 'hortadb'
 urlpatterns = [
+
     path('', views.IndexView.as_view(), name='index'),
 
-    path('tiago/', views.tiago, name='tiago'),
-    
+    # SPECIES
+
     path('species/', views.SpeciesView.as_view(), name='species'),
-    #path('species/<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('species/<int:sid>/', views.detail, name='detail'),
     path('species/new/', views.species_new, name='species_new'),
+    #path('species/', views.species, name='species'),
+    #path('species/<int:pk>/', views.DetailView.as_view(), name='detail'),
+
+    # CULTIVARS
+
     path('cultivar/<int:cid>/', views.cultivar, name='cultivar'),
+
+    # RESOURCES
+
+    path('resources', views.resources, name='resources'),
+
+    # tiago
+
+    path('tiago/', views.tiago, name='tiago'),
 
 ]
